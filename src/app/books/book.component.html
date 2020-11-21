@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="md-form">
+        <input
+          type="text"
+          [(ngModel)]="filterstring"
+          class="form-control"
+          id="search"
+          placeholder="Serach by Name/Author"
+          mdbInput
+        />
+      </div>
+    </div>
+  </div>
+  <table mdbTable class="z-depth-1 table table-striped table-bordered" style="margin-top: 15px;">
+    <thead>
+      <tr>
+        <th scope='col'>Name</th>
+        <th scope='col'>Author</th>
+        <th scope='col'>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books | bookFilter:filterstring;let i = index">
+        <td>{{book.bookName}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.status}}</td>
+    </tbody>
+  </table>
+</div>
