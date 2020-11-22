@@ -14,6 +14,7 @@ export class BookComponent implements OnInit {
   books: Book[] = [];
   error = "";
   filterstring : string;
+  isLoading = true;
 
   constructor(private bookService: BookService) { }
 
@@ -23,7 +24,16 @@ export class BookComponent implements OnInit {
 
   getBooks() {
     const req = this.bookService.getBooks();
-    req.subscribe(booksList => this.books = booksList, err => this.error = err);
+    req.subscribe(booksList => 
+       { this.books = booksList
+        this.hideloader();
+       }
+      
+      , err => this.error = err);
     }
+
+    hideloader() { 
+     this.isLoading = false;
+    } 
 
 }
