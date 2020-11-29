@@ -19,13 +19,10 @@ export class AppComponent {
     this.geolocation$.pipe(take(1)).subscribe((position) =>
     {
       getCountry(position.coords.latitude,position.coords.longitude, function(response) {
-      if(response != "India")
-    {
-      this.router.navigate(['/InvalidCountry']);
-    }
+    sessionStorage.setItem('UserCountry', response);
   }.bind(this))
 },);
-}
+  }
 
   onNavigate(feature: string) {
     this.loadedFeature = feature;
